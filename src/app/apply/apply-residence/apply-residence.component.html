@@ -1,0 +1,345 @@
+<form [formGroup]="applyFormService.residenceFormGroup">
+
+    <mat-card>
+
+        <mat-card-title>Contract For:</mat-card-title>
+
+        <mat-card-content style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+
+            Contract for:
+
+            <mat-radio-group formControlName="contractFor"
+                style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+
+                <mat-radio-button value="3quarters">3 quarters</mat-radio-button>
+                <mat-radio-button value="4quarters">4 quarters</mat-radio-button>
+                <mat-radio-button value="other">Other:
+
+                    <mat-form-field style="margin-top: 7px">
+
+                        <input matInput formControlName="contractForOther">
+
+                    </mat-form-field>
+
+                </mat-radio-button>
+
+            </mat-radio-group>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>What is your Building Choice (choose your 1st, 2nd and 3rd):</mat-card-title>
+
+        <mat-card-content style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+
+            <mat-form-field floatLabel="always" style="width: 100px">
+
+                <mat-select placeholder="Ranier Place" formControlName="ranierPlaceRank"
+                    (selectionChange)="toggleStanierAndSophieCt()">
+                    <mat-option [value]="1">1</mat-option>
+                    <mat-option [value]="2">2</mat-option>
+                    <mat-option [value]="3">3</mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" style="width: 100px">
+
+                <mat-select placeholder="Stanier Ct." formControlName="stanierCtRank"
+                    (selectionChange)="toggleRanierPlaceAndSophieCt()">
+                    <mat-option [value]="1">1</mat-option>
+                    <mat-option [value]="2">2</mat-option>
+                    <mat-option [value]="3">3</mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" style="width: 100px">
+
+                <mat-select placeholder="Sophie Ct." formControlName="sophieCtRank"
+                    (selectionChange)="toggleRanierPlaceAndStanierCt()">
+                    <mat-option [value]="1">1</mat-option>
+                    <mat-option [value]="2">2</mat-option>
+                    <mat-option [value]="3">3</mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Room Type - see website for Apartment Types, Room Types, and Prices. (Choose your 1st, 2nd and
+            3rd
+            choice):</mat-card-title>
+
+        <mat-card-content>
+            <td>
+                <br><br>
+                <div class="padding-2">Single Bedroom (in 4 bedroom, or 2 bedroom apartment):</div>
+                <div class="padding-2">Single Bedroom (in master bedroom, or shared studio or 2 bedroom apartment):
+                </div>
+                <div class="padding-2">Single Studio (Ranier Place Only):</div>
+                <div class="padding-2">Any room type is ok:</div>
+            </td>
+            <td>
+                <mat-radio-group formControlName="roomTypeChoice1">
+                    <mat-label>Choice 1</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_4_2"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_Master_Studio_2"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleStudioRanier"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="anyRoomType"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <td>
+                <mat-radio-group formControlName="roomTypeChoice2">
+                    <mat-label>Choice 2</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_4_2">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_Master_Studio_2"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleStudioRanier"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="anyRoomType"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <td>
+                <mat-radio-group formControlName="roomTypeChoice3">
+                    <mat-label>Choice 3</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_4_2">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleBed_Master_Studio_2"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="singleStudioRanier"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button [value]="anyRoomType"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <!-- <div style="display: flex; justify-content: flex-end; align-items: center;">
+
+                Single Bedroom (in 4 bedroom, or 2 bedroom apartment):
+
+                <mat-radio-group class="row">
+
+                    <mat-radio-button value="1">1</mat-radio-button>
+                    <mat-radio-button value="2">2</mat-radio-button>
+                    <mat-radio-button value="3">3</mat-radio-button>
+
+                </mat-radio-group>
+
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; align-items: center;">
+
+                Single Bedroom (in master bedroom, or shared studio or 2 bedroom apartment):
+
+                <mat-radio-group class="row">
+
+                    <mat-radio-button value="1">1</mat-radio-button>
+                    <mat-radio-button value="2">2</mat-radio-button>
+                    <mat-radio-button value="3">3</mat-radio-button>
+
+                </mat-radio-group>
+
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; align-items: center;">
+
+                Single Studio (Rainier Place Only):
+
+                <mat-radio-group class="row">
+
+                    <mat-radio-button value="1">1</mat-radio-button>
+                    <mat-radio-button value="2">2</mat-radio-button>
+                    <mat-radio-button value="3">3</mat-radio-button>
+
+                </mat-radio-group>
+
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; align-items: center;">
+
+                Any room type is ok:
+
+                <mat-radio-group class="row">
+
+                    <mat-radio-button value="1">1</mat-radio-button>
+                    <mat-radio-button value="2">2</mat-radio-button>
+                    <mat-radio-button value="3">3</mat-radio-button>
+
+                </mat-radio-group>
+
+            </div> -->
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Apartment Type:</mat-card-title>
+
+        <mat-card-content>
+
+            <mat-radio-group formControlName="apartmentType">
+
+                <mat-radio-button value="single">Single sex apartment (all female or all male)</mat-radio-button>
+                <mat-radio-button value="coed">Co-ed apartment (2 females and 2 males together in apartment)
+                </mat-radio-button>
+                <mat-radio-button value="either">Either ok</mat-radio-button>
+
+            </mat-radio-group>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>General:</mat-card-title>
+
+        <mat-card-content>
+
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <td style="width: 30%">
+                    <mat-label>Are you an athlete at EdCC?</mat-label>
+                </td>
+                <td style="width: 30%">
+                    <mat-radio-group formControlName="athleteAtEdCC" (change)="clearSportIfNonAthlete()" class="row">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+                <td style="width: 30%">
+                    <mat-form-field *ngIf="applyFormService.residenceFormGroup.get('athleteAtEdCC').value == 'yes'"
+                        style="margin-top: 7px; margin-left: 20%;">
+                        <input matInput placeholder="If yes, which sport?" formControlName="athleteAtEdCCSport">
+                    </mat-form-field>
+                    <mat-form-field *ngIf="applyFormService.residenceFormGroup.get('athleteAtEdCC').value == 'no'"
+                        style="margin-top: 7px; margin-left: 20%;">
+                        <input matInput placeholder="If yes, which sport?" disabled='true'>
+                    </mat-form-field>
+                </td>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <td style="width: 30%">
+                    <mat-label>Do you smoke?</mat-label>
+                </td>
+                <td style="width: 70%">
+                    <mat-radio-group formControlName="smoke"
+                        style="display: flex; flex-direction: row; align-items: center; margin-bottom: 20px;">
+                        <mat-radio-button value="verylittle">very little</mat-radio-button>
+                        <mat-radio-button value="some">some</mat-radio-button>
+                        <mat-radio-button value="alot">a lot</mat-radio-button>
+                        <mat-radio-button value="never">never</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <td style="width: 30%">
+                    <mat-label>Are you allergic to smoke?</mat-label>
+                </td>
+                <td style="width: 70%">
+                    <mat-radio-group formControlName="allergicToSmoke"
+                        style="display: flex; flex-direction: row;  align-items: center;">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </div>
+            <br>
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <tr>
+                    What are your hobbies?
+                </tr>
+                <tr>
+                    <mat-form-field style="width: 600px;">
+                        <textarea formControlName="hobbies" matInput matTextareaAutosize matAutosizeMinRows=1
+                            matAutosizeMaxRows=3></textarea>
+                    </mat-form-field>
+                </tr>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <td style="width: 30%">
+                    <mat-label>Are you a vegetarian?</mat-label>
+                </td>
+                <td style="width: 70%">
+                    <mat-radio-group formControlName="vegetarian"
+                        style="display: flex; flex-direction: row;  align-items: center;">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </div>
+            <br>
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <tr>
+                    Is there someone you would like to live with?
+                </tr>
+                <tr>
+                    <mat-form-field style="width: 600px;">
+                        <textarea formControlName="someoneToLiveWith" matInput matTextareaAutosize matAutosizeMinRows=1
+                            matAutosizeMaxRows=3></textarea>
+                    </mat-form-field>
+                </tr>
+            </div>
+
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <tr>
+                    Any other preferences for your room/apartment?
+                </tr>
+                <tr>
+                    <mat-form-field style="width: 600px;">
+                        <textarea formControlName="otherPreferences" matInput matTextareaAutosize matAutosizeMinRows=1
+                            matAutosizeMaxRows=3></textarea>
+                    </mat-form-field>
+                </tr>
+            </div>
+
+            <div style="display: flex; flex-direction: row; align-items: center">
+                <td style="width: 30%">
+                    <mat-label>Are you a veteran?</mat-label>
+                </td>
+                <td style="width: 70%">
+                    <mat-radio-group formControlName="veteran"
+                        style="display: flex; flex-direction: row;  align-items: center;">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+            </div>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</form>
+
+<app-apply-buttons [backLink]="userService.domestic ? paymentUrl : homestayUrl"
+    [forwardEnabled]="applyFormService.residenceFormGroup.valid"
+    forwardLink="/apply/submit" [currentPage]="currentPage"></app-apply-buttons>

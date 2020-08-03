@@ -1,0 +1,58 @@
+<div class="progress-loader" style="height: 50%;
+                    z-index: 100000000000000;
+                    width: 100%;
+                    opacity: 0.6;
+                    position: fixed;" [hidden]="!displayLoadingSpinner">
+    <mat-progress-spinner style="width: 100px;
+                        height: 100px;
+                        margin: auto;
+                        position: fixed;
+                        left: 54%;
+                        top: 10%;
+                        margin-top: 17%;
+                        z-index: 10000000000;" [mode]="'indeterminate'" [strokeWidth]="2" [diameter]="175">
+    </mat-progress-spinner>
+</div>
+
+<div class="wrapper">
+
+    <div class="box">
+
+        <form [formGroup]="formGroup">
+
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Student ID" required formControlName="studentId">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Email Address" required formControlName="email">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Password" required type="password" formControlName="password">
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Verify Password" required type="password"
+                                formControlName="password2">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="buttons">
+                <button mat-raised-button color="primary" [disabled]="!formGroup.valid" (click)="onRegisterClick()">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

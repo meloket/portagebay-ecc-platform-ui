@@ -1,0 +1,31 @@
+<div class="wrapper p-20">
+
+    <div class="nav">
+
+        <div [routerLink]="['/profile/applications']" routerLinkActive="active">
+
+            My Applications
+
+        </div>
+
+        <div [routerLink]="['/profile/settings']" routerLinkActive="active">
+
+            My Profile
+
+        </div>
+
+        <div [routerLink]="['/logout']" routerLinkActive="active">
+
+            Logout
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>

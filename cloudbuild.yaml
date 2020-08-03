@@ -1,0 +1,99 @@
+steps:
+
+# Decrypt the file containing the key
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=.ssh/id_rsa.enc
+  - --plaintext-file=/root/.ssh/id_rsa
+  - --location=global
+  - --keyring=ci-keyring
+  - --key=github-key
+  - --verbosity=debug
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+# Set up git with key and domain
+- name: 'gcr.io/cloud-builders/git'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    chmod 600 /root/.ssh/id_rsa
+    cat <<EOF >/root/.ssh/config
+    Hostname github.com
+    IdentityFile /root/.ssh/id_rsa
+    EOF
+    mv .ssh/known_hosts /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+# Clone the remote repository
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - clone
+  - git@github.com:Xandon/$REPO_NAME.git
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+# Build docker image
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    BUILDENV=dev
+    if [[ "$BRANCH_NAME" == "master" ]]; then
+      BUILDENV=prod
+    fi
+    echo "Building brach $BRANCH_NAME for environment: $$BUILDENV"
+    /usr/bin/docker \
+      build \
+      -t gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA \
+      --build-arg BUILDENV=$$BUILDENV .
+
+# Push docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA'
+
+# fetch GKE cluster credentials to be used for helm step
+- name: 'gcr.io/cloud-builders/kubectl'
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-west1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=edmonds-cluster'
+  - 'KUBECONFIG=/workspace/.kube/config'
+  args: ['cluster-info']
+
+# Install helm chart
+- name: 'alpine/helm:3.1.2'
+  entrypoint: '/bin/sh'
+  args:
+  - '-c'
+  - |
+    NAME=$REPO_NAME
+    VALUES="values.yaml"
+    if [[ "$BRANCH_NAME" != "master" ]]; then
+      NAME="${REPO_NAME}-dev"
+      VALUES="values-dev.yaml"
+    fi
+    helm upgrade \
+      --install \
+      $$NAME \
+      ./manifests \
+      -f manifests/$$VALUES \
+      --set fullnameOverride=$$NAME \
+      --set image.tag=$COMMIT_SHA \
+      --set image.repository="gcr.io/$PROJECT_ID/$REPO_NAME" \
+      --atomic \
+      --timeout 120s
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=us-west1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=edmonds-cluster'
+  - 'KUBECONFIG=/workspace/.kube/config'
+  - 'DEBUG=TRUE'

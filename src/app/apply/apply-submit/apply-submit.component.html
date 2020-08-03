@@ -1,0 +1,40 @@
+<div class="progress-loader" style="height: 50%;
+                    z-index: 100000000000000;
+                    width: 100%;
+                    opacity: 0.6;
+                    position: fixed;" [hidden]="!displayLoadingSpinner">
+    <mat-progress-spinner style="width: 100px;
+                        height: 100px;
+                        margin: auto;
+                        position: fixed;
+                        left: 54%;
+                        top: 10%;
+                        margin-top: 17%;
+                        z-index: 10000000000;" [mode]="'indeterminate'" [strokeWidth]="2" [diameter]="175">
+    </mat-progress-spinner>
+</div>
+
+<div class="message">
+
+    <h3>
+
+        Choose any section on the left to review your information.
+
+    </h3>
+
+    <h4>
+
+        Click Submit below to submit your application.
+
+    </h4>
+
+</div>
+
+<app-apply-buttons backLink="/apply/residence" forwardLabel="Submit" (click)="onSubmitClick()"
+    forwardLink="/apply/submit" [forwardEnabled]="!isDisabled"></app-apply-buttons>
+
+<h5>
+
+    After clicking Submit you will see more instructions. Please read carefully. Thank you.
+
+</h5>

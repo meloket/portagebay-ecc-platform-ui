@@ -1,0 +1,352 @@
+<form [formGroup]="applyFormService.paymentformGroup">
+
+    <mat-card>
+
+        <mat-card-title>Quarterly Payments:</mat-card-title>
+
+        <mat-card-content>
+
+            <p>
+
+                For questions regarding your payments please see our Payments page <a href="#">here</a>.
+
+            </p>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        Quarterly Housing Payments made by:
+
+                    </td>
+
+                    <td>
+
+                        <mat-radio-group formControlName="madeBy">
+                            <mat-radio-button value="agent">Agent Paying</mat-radio-button>
+                            <mat-radio-button value="aid">Financial Aid</mat-radio-button>
+                            <mat-radio-button value="student">Student/Family</mat-radio-button>
+                            <mat-radio-button value="other">Other, if so what?
+                                <mat-form-field>
+                                    <input matInput formControlName="madeByOther">
+                                </mat-form-field>
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Will you have financial aid?
+
+                        <mat-form-field floatLabel="always">
+                            <mat-select formControlName="financialAid">
+                                <mat-option value="Yes">
+                                    Yes
+                                </mat-option>
+                                <mat-option value="No">
+                                    No
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Email of person paying:
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput required formControlName="email">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+
+                        I will pay $275.00 application fee by:
+
+                    </td>
+
+                    <td>
+
+                        <mat-radio-group formControlName="method" (change)="setValidator()">
+                            <mat-radio-button value="credit">Credit Card</mat-radio-button>
+                            <mat-radio-button value="check">Check</mat-radio-button>
+                            <mat-radio-button value="wire">
+                                Wire Transfer
+                                <ng-container *ngIf="applyFormService.paymentformGroup.get('method').value === 'wire'">
+                                    <mat-form-field floatLabel="always">
+                                        <input matInput formControlName="wireAmount" placeholder="Wire Amount">
+                                    </mat-form-field>
+                                    <ng-container *ngIf="applyFormService.newApplication">
+                                        <mat-form-field floatLabel="always">
+                                            <input matInput [matDatepicker]="pickerTwo" formControlName="wireDate"
+                                                placeholder="Wire Date" [readonly]=true>
+                                            <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+                                            <mat-datepicker touchUi #pickerTwo></mat-datepicker>
+                                        </mat-form-field>
+                                    </ng-container>
+                                    <ng-container *ngIf="!applyFormService.newApplication">
+                                        <mat-form-field floatLabel="always">
+                                            <input matInput [matDatepicker]="pickerTwo" formControlName="wireDate" placeholder="Wire Date"
+                                                [readonly]=true>
+                                                <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+                                            <mat-datepicker touchUi #pickerTwo></mat-datepicker>
+                                        </mat-form-field>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="applyFormService.paymentformGroup.get('method').value != 'wire'">
+                                    <mat-form-field floatLabel="always">
+                                        <input matInput placeholder="Wire Amount" disabled='true'>
+                                    </mat-form-field>
+                                    <mat-form-field floatLabel="always">
+                                        <input matInput placeholder="Wire Date" disabled='true'>
+                                    </mat-form-field>
+                                </ng-container>
+                            </mat-radio-button>
+                            <br>
+                        </mat-radio-group>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Student Details:</mat-card-title>
+        <mat-card-content>
+            <table>
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Student Last Name" [value]="studentLastName" [readonly]=true>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Student First Name" [value]="studentFirstName" [readonly]=true>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Student ID Number" [value]="studentId" [readonly]=true>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-content>
+            <table>
+                <tr>
+                    <td>
+                        <p>Other items you would like to pay for now?</p>
+                        <!-- <ng-container formArrayName="payForNowTypes" *ngFor="let type of applyFormService.paymentformGroup.controls.payForNowTypes.controls; let i = index">
+                            <tr>
+                                <td>
+                                <mat-checkbox [formControlName]="i">
+                                    {{_payForNowTypes[i].name}}
+                                </mat-checkbox>    
+                                </td>
+                                <td><label><strong>$</strong></label>&nbsp;
+                                    <input matInput class="outlined-input"
+                                        [value]="_payForNowTypes[i].amount"
+                                        [readonly]="i <= 2">
+                                </td>
+                        </tr>
+                        </ng-container> -->
+                <tr>
+                    <td>
+                        <mat-checkbox formControlName="minAdvancedHomestayPayment">
+                            Minimum Advanced Payment for Homestay
+                        </mat-checkbox>
+                    </td>
+                    <td>
+                        <label><strong>$</strong></label>&nbsp;
+                        <input matInput class="outlined-input" [value]="_minAdvancedHomestayPayment" [readonly]="true">
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td>
+                        <mat-checkbox formControlName="orcaBusPass">
+                            ORCA Bus Pass
+                        </mat-checkbox>
+                    </td>
+                    <td>
+                        <label><strong>$</strong></label>&nbsp;
+                        <input matInput class="outlined-input" [value]="_orcaBusPass" [readonly]="true">
+                    </td>
+                </tr> -->
+                <tr>
+                    <td>
+                        <mat-checkbox formControlName="airportPickup">
+                            Airport Pickup
+                        </mat-checkbox>
+                    </td>
+                    <td>
+                        <label><strong>$</strong></label>&nbsp;
+                        <input matInput class="outlined-input" [value]="_airportPickup" [readonly]="true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-checkbox formControlName="housingRent">
+                            Housing Rent:
+                        </mat-checkbox>
+                    <td>
+                        <label><strong>$</strong></label>&nbsp;
+                        <ng-container *ngIf="applyFormService.paymentformGroup.get('housingRent').value == false">
+                            <input matInput class="outlined-input" disabled='true'>
+                        </ng-container>
+                        <ng-container *ngIf="applyFormService.paymentformGroup.get('housingRent').value == true">
+                            <input matInput formControlName="housingRentAmount" class="outlined-input">
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-checkbox formControlName="other">
+                            Other:
+                        </mat-checkbox>
+                    </td>
+                    <td>
+                        <label><strong>$</strong></label>&nbsp;
+                        <ng-container *ngIf="applyFormService.paymentformGroup.get('other').value == false">
+                            <input matInput class="outlined-input" disabled='true'>
+                        </ng-container>
+                        <ng-container *ngIf="applyFormService.paymentformGroup.get('other').value == true">
+                            <input matInput formControlName="otherAmount" class="outlined-input">
+                        </ng-container>
+                    </td>
+                </tr>
+                </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>What is your Housing Choice? (Rank 1st and 2nd choices):</mat-card-title>
+
+        <mat-card-content style="display: flex; justify-content: center;">
+
+            <mat-form-field floatLabel="always">
+
+                <!-- <input matInput
+                       placeholder="Homestay"
+                       [formControlName]="housingChoiceHomestayRanking"> -->
+                <mat-label>Homestay</mat-label>
+                <mat-select formControlName="housingChoiceHomestayRanking"
+                    (selectionChange)="toggleResidenceHallRanking()">
+                    <mat-option [value]=1>
+                        1st Choice
+                    </mat-option>
+                    <mat-option [value]=2>
+                        2nd Choice
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+
+                <!-- <input matInput
+                       placeholder="Residence Hall"
+                       [formControlName]="housingChoiceResidenceHallRanking"> -->
+
+                <mat-label>Residence Hall</mat-label>
+                <mat-select formControlName="housingChoiceResidenceHallRanking"
+                    (selectionChange)="toggleHomestayRanking()">
+                    <mat-option [value]=1>
+                        1st Choice
+                    </mat-option>
+                    <mat-option [value]=2>
+                        2nd Choice
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+
+        </mat-card-content>
+
+    </mat-card>
+
+
+    <mat-card>
+
+        <p style="width: 800px">
+
+            Please be aware that we will do our best to fit you with your room request, but we do not guarantee your
+            first choices. Confirmation of room assignments will be sent out some time in the month prior to arrival
+            (Fall placements are sent out starting in July).
+
+            <span style="font-weight: bold">
+
+                There is no refund on the $275 application fee unless we are not able to place you in a room.
+
+            </span>
+
+            After being assigned a room, you agree to move in and follow all Housing and College Policies (see Student
+            Handbook)
+            and pay at least one quarter's rent/stipend. Also, please note that the college does not cover personal
+            items
+            for insurance purposes.
+
+        </p>
+
+        <mat-card-content>
+
+            <mat-form-field floatLabel="always" style="width: 300px">
+                <input matInput placeholder="Printed Name" formControlName="printedName">
+            </mat-form-field>
+
+            <ng-container *ngIf="applyFormService.newApplication">
+                <mat-form-field floatLabel="always">
+                    <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Date" [readonly]=true>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </ng-container>
+            <ng-container *ngIf="!applyFormService.newApplication">
+                <mat-form-field floatLabel="always">
+                    <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Date" [readonly]=true>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </ng-container>
+        </mat-card-content>
+
+    </mat-card>
+</form>
+
+<app-apply-buttons backLink="/apply/arrival"
+    [forwardEnabled]="applyFormService.paymentformGroup.valid"
+    [forwardLink]="userService.domestic ? residenceUrl : homestayUrl" [currentPage]="currentPage"></app-apply-buttons>

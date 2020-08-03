@@ -1,0 +1,72 @@
+<div class="wrapper p-10">
+
+    <mat-card>
+
+        <mat-card-title>
+
+            My Profile
+
+        </mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>Email Address:</td>
+                    <td>{{ user?.email }}</td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>
+
+            Change My Password
+
+        </mat-card-title>
+
+        <mat-card-content>
+
+            <form [formGroup]="changePasswordFormGroup">
+
+                <mat-form-field floatLabel="always">
+
+                    <input matInput
+                           required
+                           formControlName="password"
+                           placeholder="New Password">
+
+                </mat-form-field>
+
+                <mat-form-field floatLabel="always">
+
+                    <input matInput
+                           required
+                           formControlName="password2"
+                           placeholder="Verify Password">
+
+                </mat-form-field>
+
+                <button mat-raised-button
+                        [disabled]="!changePasswordFormGroup.valid"
+                        color="warn">
+
+                    Change Password
+
+                </button>
+
+            </form>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</div>

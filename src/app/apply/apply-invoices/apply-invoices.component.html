@@ -1,0 +1,123 @@
+<mat-card>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <h2>
+          Applicant:
+        </h2>
+        <mat-form-field floatLabel="always">
+          <input matInput placeholder="Student ID" [(ngModel)]="invoicesStudentDetail.studentId" />
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <input matInput placeholder="Last Name" [(ngModel)]="invoicesStudentDetail.lastName" />
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <input matInput placeholder="First Name" [(ngModel)]="invoicesStudentDetail.firstName" />
+        </mat-form-field>
+        <!-- <mat-form-field floatLabel="always">
+          <input matInput placeholder="Date of Birth" [(ngModel)]="invoicesStudentDetail.dateOfBirth" />
+        </mat-form-field> -->
+      </div>
+      <div class="col-md-6">
+        <h2>
+          Applied For:
+        </h2>
+        <mat-form-field floatLabel="always">
+          <input matInput placeholder="Year" [(ngModel)]="invoicesStudentDetail.appliedForYear" />
+        </mat-form-field>
+        <mat-form-field floatLabel="always">
+          <input matInput placeholder="Quarter" [(ngModel)]="invoicesStudentDetail.appliedForQuarter" />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row">
+      <h2>Invoices Outstanding</h2>
+    <div>
+        <p class="help-text">
+            Step 1 - Click Create Payment Account to Create payment account<br>
+            Step 2 - Click Pay to Pay Invoice
+        </p>
+    </div>
+      <div style="text-align: right" *ngIf="invoicesStudentDetail.selectedPaymentMethod === 'credit'">
+        <button mat-raised-button color="primary" (click)="openUSPayUserDetailsModal()">
+            Create Payment Account</button>
+      </div>
+    </div>
+    <ng-container *ngIf="!unpaidInvoiceList || (unpaidInvoiceList && unpaidInvoiceList.length === 0)">
+      <span>You have no outstanding invoices.</span>
+    </ng-container>
+    <ng-container *ngIf="unpaidInvoiceList && unpaidInvoiceList.length > 0">
+      <div class="mat-table">
+        <div class="mat-header-row">
+          <!--<div class="mat-cell">&nbsp;</div>-->
+          <div class="mat-cell">Invoice Date</div>
+          <!-- <div class="mat-cell">Payment Due</div> -->
+          <div class="mat-cell">Invoice Total</div>
+          <div class="mat-cell">Outstanding</div>
+          <div class="mat-cell"></div>
+        </div>
+        <div class="mat-row" *ngFor="let invoice of unpaidInvoiceList; let i = index;">
+          <!--<div class="mat-cell">{{i}}</div>-->
+          <div class="mat-cell">{{invoice.createdDate}}</div>
+          <!-- <div class="mat-cell"></div> -->
+          <div class="mat-cell">${{invoice.feesTotal}}</div>
+          <ng-container *ngIf="invoice.quarterBalance > 0">
+            <div class="mat-cell" style="color: orangered">
+              {{invoice.quarterBalance}}
+            </div>
+          </ng-container>
+          <ng-container *ngIf="invoice.quarterBalance < 0">
+            <div class="mat-cell">
+              {{invoice.quarterBalance}}
+            </div>
+          </ng-container>
+          <div class="mat-cell">
+            <ng-container
+              *ngIf="invoicesStudentDetail.selectedPaymentMethod === 'credit' && (!invoice.justPaid || invoice.justPaid === false)">
+              <button mat-button matTooltip="Pay via USPay" color="primary"
+                (click)="makeUSPayPayment(invoice, invoice.quarterBalance)">Pay</button>
+            </ng-container>
+            <ng-container
+              *ngIf="invoicesStudentDetail.selectedPaymentMethod != 'credit' && (!invoice.justPaid || invoice.justPaid === false)">
+              <button mat-button
+                matTooltip="Since your selected payment method is not Credit. Please visit the desk to complete your payment."
+                color="primary" onclick="emptyDate()">Pay</button>
+            </ng-container>
+            <ng-container
+              *ngIf="invoicesStudentDetail.selectedPaymentMethod === 'credit' && (invoice.justPaid && invoice.justPaid === true)">
+              <span color="primary">Paid</span>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+    <h2>Paid Invoices</h2>
+    <ng-container *ngIf="!paidInvoiceList || (paidInvoiceList && paidInvoiceList.length === 0)">
+      <span>You have no paid invoices.</span>
+    </ng-container>
+    <ng-container *ngIf="paidInvoiceList && paidInvoiceList.length > 0">
+      <div class="mat-table">
+        <div class="mat-header-row">
+          <div class="mat-cell">#</div>
+          <div class="mat-cell">Invoice Date</div>
+          <div class="mat-cell">Invoice Total</div>
+          <div class="mat-cell">Total Paid</div>
+        </div>
+        <div class="mat-row" *ngFor="let invoice of paidInvoiceList; let i = index;">
+          <div class="mat-cell">{{i + 1}}</div>
+          <div class="mat-cell">{{invoice.createdDate}}</div>
+          <div class="mat-cell">${{invoice.feesTotal}}</div>
+          <div class="mat-cell">{{invoice.totalPaid}}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+</mat-card>

@@ -1,0 +1,40 @@
+:host {
+    
+    .wrapper {
+        
+        display: flex;
+        
+        .nav {
+            
+            margin-right: 20px;
+            
+            div {
+                
+                padding: 10px;
+                color: #666;
+                cursor: pointer;
+                
+                &:hover {
+                    
+                    background: #eee;
+                    
+                }
+                
+            }
+            
+        }
+        
+        .active {
+            
+            font-weight: bold;
+            
+        }
+        
+        .content {
+        
+        
+        }
+        
+    }
+    
+}

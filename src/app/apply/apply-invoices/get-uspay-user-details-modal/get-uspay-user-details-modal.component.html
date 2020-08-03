@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>USPay Account Details</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formGroupData">
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="User ID" formControlName="userId" required>
+    <mat-hint>6-16 letters (case sensitive) and numbers with at least one letter required</mat-hint>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input type="password" placeholder="Password" matInput formControlName="password" required>
+    <mat-hint>8-16 alpha numeric with atleast one letter and one number</mat-hint>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="First Name" formControlName="firstName" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Last Name" formControlName="lastName" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input type="email" placeholder="Email Address" matInput formControlName="emailAddress" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Street Address 1" formControlName="streetAddress1" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Street Address 2" formControlName="streetAddress2">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="City" formControlName="city" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="State" formControlName="state" required>
+    <mat-hint>Valid state code with 2 chars length. For e.g. IL</mat-hint>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Zip Postal Code" formControlName="zipPostalCode" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Country" formControlName="country" required>
+    <mat-hint style="color: red;">Valid country code with 2 chars length. For e.g. US</mat-hint>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <mat-select placeholder="Select shared secret type" formControlName="sharedSecretType" required>
+      <mat-option *ngFor="let type of sharedSecretTypeArray" [value]="type">{{type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Answer" formControlName="sharedSecretAnswer" required>
+  </mat-form-field>
+</form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!formGroupData.valid" (click)="submitData()" cdkFocusInitial>Create</button>
+</div>

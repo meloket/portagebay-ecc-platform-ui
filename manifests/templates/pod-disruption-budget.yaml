@@ -1,0 +1,18 @@
+{{ if gt .Values.replicaCount 1.0 }}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "portagebay-ecc-platform-ui.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "portagebay-ecc-platform-ui.name" . }}
+    helm.sh/chart: {{ include "portagebay-ecc-platform-ui.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "portagebay-ecc-platform-ui.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  minAvailable: {{ sub .Values.replicaCount 1 }}
+{{- end }}

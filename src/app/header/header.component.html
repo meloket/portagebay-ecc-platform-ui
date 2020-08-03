@@ -1,0 +1,70 @@
+<div class="wrapper">
+    <div class="logos">
+
+        <div class="logo-main" routerLink="/">
+
+            <img src="/assets/logo.png" alt="Edmonds Community College">
+
+        </div>
+
+        <div class="logo-housing">
+
+            <img src="/assets/edcc_housing_logo.png">
+            
+            <div class="logo-housing-text">Housing and residence life</div>
+
+        </div>
+
+    </div>
+
+    <div class="header-content">
+        <div class="menu">
+
+            <div class="item" routerLink="/apply" routerLinkActive="active">
+
+                APPLY NOW
+
+            </div>
+
+            <div *ngIf="!authenticationService.isLoggedIn()" class="item" routerLink="/register" routerLinkActive="active">
+
+                Register
+
+            </div>
+
+            <!--<div *ngIf="authenticationService.isLoggedIn()" class="item" routerLink="/profile" routerLinkActive="active">-->
+
+                <!--My Profile-->
+
+            <!--</div>-->
+
+            <div *ngIf="authenticationService.isLoggedIn()" class="item" routerLink="/logout" routerLinkActive="active">
+
+                Logout
+
+            </div>
+
+            <div class="item" routerLink="/contact" routerLinkActive="active">
+
+                Contact Us
+
+            </div>
+
+        </div>
+
+        <div class="bottom">
+
+        </div>
+    </div>
+
+    <!--
+    <div *ngIf="progressBarService.canDisplay" class="progressBar">
+        <h3 class="example-h3" style="color: white">Application Status</h3>
+        <section class="example-section">
+            <mat-progress-bar class="example-margin" [mode]="'determinate'" [value]="progressInfo.progressStatus">
+            </mat-progress-bar>
+        </section>
+    </div>
+    -->
+
+</div>

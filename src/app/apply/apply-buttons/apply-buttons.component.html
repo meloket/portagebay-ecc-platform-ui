@@ -1,0 +1,27 @@
+<div class="wrapper">
+
+    <div>
+
+        <button *ngIf="backLink"
+                [routerLink]="backLink"
+                mat-raised-button>Previous Step
+        </button>
+
+    </div>
+
+    <div>
+
+        <button *ngIf="forwardLink"
+                [routerLink]="forwardLink"
+                color="primary"
+                [disabled]="!forwardEnabled"
+                (click)="onForwardClick()"
+                mat-raised-button>
+
+            {{ forwardLabel }}
+
+        </button>
+
+    </div>
+
+</div>

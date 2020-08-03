@@ -1,0 +1,28 @@
+{{- if .Values.scaler.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ template "portagebay-ecc-platform-ui.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "portagebay-ecc-platform-ui.name" . }}
+    helm.sh/chart: {{ include "portagebay-ecc-platform-ui.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  maxReplicas: {{ .Values.scaler.max }}
+  minReplicas: {{ .Values.scaler.min }}
+  scaleTargetRef:
+    apiVersion: apps/v1beta1
+    kind: Deployment
+    name: {{ template "portagebay-ecc-platform-ui.fullname" . }}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: {{ .Values.scaler.targetAverageUtilization.cpu }}
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: {{ .Values.scaler.targetAverageUtilization.memory }}
+{{- end }}

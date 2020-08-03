@@ -1,0 +1,82 @@
+<h1 mat-dialog-title>Credit Card Payment Information</h1>
+<div mat-dialog-content>
+<form [formGroup]="formGroupData">
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Your USPay User ID"  
+      formControlName="userId" required>
+    <mat-hint>Please create a new USPay account from the previous page, if you dont have one.</mat-hint>
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-radio-group formControlName="creditCardType"
+      style="flex-direction: row;" required>
+    <mat-radio-button value="VISA" style="padding: 2%">
+      <img src="/assets/icons/visa-icon.png">
+    </mat-radio-button>
+    <mat-radio-button value="MC" style="padding: 2%">
+      <img src="/assets/icons/mastercard-icon.png">
+    </mat-radio-button>
+    <mat-radio-button value="DISC" style="padding: 2%">
+      <img src="/assets/icons/discover-icon.png">
+    </mat-radio-button>
+    <mat-radio-button value="AMEX" style="padding: 2%">
+      <img src="/assets/icons/amex-icon.png">
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Credit Card Number" formControlName="creditCardNumber" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Exact Name on Card" formControlName="nameOnCreditCard" required>
+  </mat-form-field>
+
+  <mat-form-field class="width-80-pc">
+      <input matInput readonly required class="show-only" formControlName="showDate" placeholder="Expiration Date">
+    <input matInput [matDatepicker]="dp" placeholder="Expiration Date"
+      [formControl]="creditCardExpDate" required readonly style="display: none;">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+      (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="CVV" formControlName="cvv" required>
+  </mat-form-field>
+
+  <!-- <mat-form-field>
+    <mat-label>Bank RTN</mat-label>
+    <input matInput [(ngModel)]="data.customerAchPaymentDetails.bankRTN">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Account number</mat-label>
+    <input matInput [(ngModel)]="data.customerAchPaymentDetails.accountNumber">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Account Type</mat-label>
+    <mat-select [(ngModel)]="data.customerAchPaymentDetails.accountType" placeholder="Please select">
+      <mat-option *ngFor="let type of accountTypeArray" [value]="type">{{type}}</mat-option>
+    </mat-select>  
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Account Category</mat-label>
+    <mat-select [(ngModel)]="data.customerAchPaymentDetails.accountCategory" placeholder="Please select">
+      <mat-option *ngFor="let category of accountCategoryArray" [value]="category">{{category}}</mat-option>
+    </mat-select>  
+  </mat-form-field> -->
+
+  <mat-form-field floatLabel="always" class="width-80-pc">
+    <input matInput placeholder="Payment Amount" formControlName="paymentAmount" readonly required>
+  </mat-form-field>
+</form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="makeUSPayPayment()" cdkFocusInitial [disabled]="!formGroupData.valid">Pay Now</button>
+</div>

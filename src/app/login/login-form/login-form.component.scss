@@ -1,0 +1,80 @@
+:host {
+    
+    .wrapper {
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .box {
+            
+            display: flex;
+            background: #eee;
+            margin: 100px;
+            
+            border: 1px solid #eee;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+            .center {
+                position: absolute;
+                bottom: 30px;
+                left: 30%;
+            }
+
+            .left {
+                position: relative;
+                padding: 20px;
+                border-right: 2px solid #e1e1e1;
+                width: 300px;
+                
+            }
+            
+            .right {
+                
+                padding: 20px;
+                
+                background: #eee;
+                
+                
+                form {
+                    
+                    display: flex;
+                    flex-direction: column;
+                    
+                    mat-form-field {
+                        
+                        width: 200px;
+                        
+                    }
+                    
+                    .buttons {
+                        
+                        display: flex;
+                        justify-content: flex-end;
+                        
+                    }
+                    
+                }
+                
+                .forgot {
+                    
+                    margin-top: 15px;
+                    text-align: right;
+                    
+                    a {
+                        
+                        font-size: 13px;
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+}

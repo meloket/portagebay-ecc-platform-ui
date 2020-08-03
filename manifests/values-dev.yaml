@@ -1,0 +1,15 @@
+fullnameOverride: portagebay-ecc-platform-ui-dev
+
+replicaCount: 1
+
+scaler:
+  enabled: true
+  max: 3
+  min: 1
+  targetAverageUtilization:
+    cpu: 80
+    memory: 80
+
+env:
+  - name: production
+    value: "false"

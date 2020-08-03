@@ -1,0 +1,398 @@
+<form [formGroup]="applyFormService.personalInformationformGroup">
+
+    <mat-card>
+
+        <mat-card-title>Year and Quarter you plan to begin:</mat-card-title>
+
+        <mat-card-content>
+
+            <table class="year-domestic">
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <mat-select required placeholder="Year" formControlName="year">
+                                <mat-option *ngFor="let year of next10Years" [value]="year">{{year}}</mat-option>
+                            </mat-select>
+
+                            <!--<input matInput
+                                required
+                                maxlength="4"
+                                formControlName="year"
+                                placeholder="Year">-->
+
+                        </mat-form-field>
+
+                    </td>
+
+                    <td></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-radio-group required formControlName="quarter">
+
+                            <mat-radio-button value="Fall">Fall (September - December)</mat-radio-button>
+                            <mat-radio-button value="Winter">Winter (January - March)</mat-radio-button>
+                            <mat-radio-button value="Spring">Spring (March - June)</mat-radio-button>
+                            <mat-radio-button value="Summer">Summer (July - August)</mat-radio-button>
+
+                        </mat-radio-group>
+
+                    </td>
+
+                    <td>
+                        <mat-radio-group  required formControlName="studentType">
+
+                            <mat-radio-button value="domestic" (change)="onChangeStudentType($event.value)">Domestic student *</mat-radio-button>
+                            <mat-radio-button value="international" (change)="onChangeStudentType($event.value)">International student *</mat-radio-button>
+    
+                        </mat-radio-group>
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Personal Information:</mat-card-title>
+
+        <mat-card-content>
+
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput required formControlName="nameLast" placeholder="Last Name (Family Name)">
+
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput required formControlName="nameFirst" placeholder="First Name">
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput required formControlName="nameMiddle" placeholder="Middle Name">
+                        </mat-form-field>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <ng-container *ngIf="applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput formControlName="dateOfBirth" type="date"
+                                    placeholder="Date of Birth" [readonly]=false>
+                                <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+                                <!--<mat-datepicker touchUi #picker></mat-datepicker>-->
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngIf="!applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput formControlName="dateOfBirth" placeholder="Date of Birth" type="date"
+                                    [readonly]=false>
+                                <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+                                <!--<mat-datepicker touchUi #picker></mat-datepicker>-->
+                            </mat-form-field>
+                        </ng-container>
+
+                        <mat-form-field floatLabel="always">
+                            <mat-select required placeholder="Gender" formControlName="gender">
+                                <mat-option value="female">Female</mat-option>
+                                <mat-option value="male">Male</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Student ID Number" formControlName="studentId" [readonly]=true>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Student's Current Contact Information:</mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 600px">
+
+                            <input matInput required formControlName="contactAddress" placeholder="Street Address">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <mat-select required placeholder="Country" formControlName="contactCountry"
+                                (selectionChange)="onChangeCountry($event.value)">
+                                <mat-option *ngFor="let country of countryInfo; let i = index"
+                                    [value]="userService.newUser ? country.CountryName + '-' + i : country.CountryName">
+                                    {{country.CountryName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput required placeholder="State" formControlName="contactState"/>
+                        </mat-form-field>
+
+                        <!-- <mat-form-field floatLabel="always"
+                            *ngIf="!applyFormService.personalInformationformGroup.controls['contactCountry'].valid">
+                            <mat-select required placeholder="State" disabled='true'>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always"
+                            *ngIf="applyFormService.personalInformationformGroup.controls['contactCountry'].valid">
+                            <mat-select required placeholder="State" formControlName="contactState"
+                                (selectionChange)="onChangeState($event.value)">
+                                <mat-option *ngFor="let state of stateInfo; let i = index"
+                                    [value]="userService.newUser ? state.StateName + '-' + i : state.StateName">
+                                    {{state.StateName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput required placeholder="City" formControlName="contactCity"/>
+                        </mat-form-field>
+
+                        <!-- <mat-form-field floatLabel="always" *ngIf="!applyFormService.personalInformationformGroup.controls['contactCountry'].valid
+                                || !applyFormService.personalInformationformGroup.controls['contactState'].valid">
+                            <mat-select required placeholder="City" disabled='true'>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always" *ngIf="applyFormService.personalInformationformGroup.controls['contactCountry'].valid
+                                && applyFormService.personalInformationformGroup.controls['contactState'].valid">
+                            <mat-select required placeholder="City" formControlName="contactCity">
+                                <mat-option *ngFor="let city of cityInfo;" [value]="city">
+                                    {{city}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always">
+                            <mat-label>Phone Number - {{studentPhoneCode}}</mat-label>
+                            <input matInput required formControlName="contactPhone" (change)="onChangeContactPhone()">
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always">
+                            <input matInput type="email" required formControlName="contactEmail1"
+                                placeholder="Email Address 1">
+                        </mat-form-field>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput required formControlName="contactPostalCode" placeholder="Postal Code">
+
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput type="email" formControlName="contactEmail2" placeholder="Email Address 2">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Language and Nationality:</mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always">
+
+                            <mat-select required placeholder="Country of Birth" formControlName="countryOfBirth">
+                                <mat-option *ngFor="let country of countryInfo; let i = index"
+                                    [value]="country.CountryName">
+                                    {{country.CountryName}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <mat-select required placeholder="Country of Citizenship"
+                                formControlName="countryOfCitizenship">
+                                <mat-option *ngFor="let country of countryInfo; let i = index"
+                                    [value]="country.CountryName">
+                                    {{country.CountryName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <mat-select formControlName="nativeLanguage" required placeholder="Native Language">
+                                <mat-option *ngFor="let language of worldLanguages" [value]="language">
+                                    {{language}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Emergency Contact and Phone (either in the U.S. or abroad):</mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 250px">
+
+                            <input matInput required formControlName="emergencyContactName" placeholder="Name">
+
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput formControlName="emergencyContactRelationship" placeholder="Relationship">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <mat-form-field floatLabel="always" style="width: 100%">
+
+                        <input matInput formControlName="emergencyContactAddress" placeholder="Address">
+
+                    </mat-form-field>
+
+
+                </tr>
+                <tr>
+
+                    <mat-form-field floatLabel="always">
+
+                        <mat-select required placeholder="Country" formControlName="emergencyContactCountry"
+                            (selectionChange)="onChangeEmergencyContactCountry($event.value)">
+                            <mat-option *ngFor="let country of countryInfo; let i = index"
+                                [value]="country.CountryName">
+                                {{country.CountryName}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                    <mat-form-field floatLabel="always" style="width: 250px">
+                        <mat-label>Phone Number - {{emergencyPersonPhoneCode}}</mat-label>
+                        <input matInput required formControlName="emergencyContactPhone"
+                            (change)="onChangeEmergencyContactPhone()">
+                    </mat-form-field>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 250px">
+
+                            <input matInput required formControlName="emergencyContactEmail"
+                                placeholder="Email Address">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card style="display: flex; flex-direction: column;">
+        <mat-card-content>
+            <mat-form-field appearance="legacy" floatLabel="always" style="width: 100%" >
+                <ngx-mat-file-input
+                    (change)="onFileChanged($event)"
+                    [accept]="'.JPG'"
+                    maxContentSize="2MB"
+                    placeholder="Click to upload your profile picture. Your picture should be a JPG file under 2 MB."
+                >
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+        </mat-card-content>
+        
+        <img *ngIf="base64Data" [src]="base64Data" width="200px" height="200px" style="align-self: center;"/>
+    </mat-card>
+
+    
+
+</form>
+
+<app-apply-buttons backLink="/apply/introduction"
+    [forwardEnabled]="applyFormService.personalInformationformGroup.valid"
+    [forwardLink]="nextLink" [currentPage]="currentPage"></app-apply-buttons>

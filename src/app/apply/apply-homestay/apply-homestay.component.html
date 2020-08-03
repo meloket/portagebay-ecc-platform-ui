@@ -1,0 +1,325 @@
+<form [formGroup]="applyFormService.homestayformGroup">
+
+    <mat-card>
+
+        <mat-card-title>Host Family Relationship & Personal Preferences:</mat-card-title>
+
+        <mat-card-content>
+
+            <p>
+
+                (Your Priorities will be very strongly considered
+
+                <span style="text-decoration: underline">cannot be guaranteed to be available</span>.)
+
+            </p>
+
+            <p style="font-weight: bold">
+
+                Please choose your preferred level of interaction with your Host:
+
+            </p>
+
+            <mat-radio-group formControlName="level">
+
+                <mat-radio-button value="1">1. I am independent and need very little relationship & conversation with
+                    the host.</mat-radio-button>
+                <mat-radio-button value="2">2. I want limited conversation & time together with host.</mat-radio-button>
+                <mat-radio-button value="3">3. I want a lot of open communication & time together with host.
+                </mat-radio-button>
+                <mat-radio-button value="4">4. I hope to be an intimate member of the host family.</mat-radio-button>
+
+            </mat-radio-group>
+
+
+            <td>
+                <div class="padding-2" style="font-weight: bold">
+                    Please read the list below and rank your 1st, 2nd, and 3rd preferences accordingly:
+                </div>
+                <div class="padding-2">Home that hosts only one or two international students (Some host 3-4 students)
+                </div>
+                <div class="padding-2">Home with small children</div>
+                <div class="padding-2">Home without small children</div>
+                <div class="padding-2">Native English-speaking host (Please be aware that most of these homes have a
+                    pet dog and/or cat)</div>
+                <div class="padding-2">Your studies</div>
+                <div class="padding-2">Very clean</div>
+                <div class="padding-2">Close to school or convenient bus</div>
+                <div class="padding-2">Dietary needs (Please explain here):
+                    <mat-form-field floatLabel="always" style="width: 400px">
+                        <input matInput formControlName="dietaryNeeds" #dietaryNeedsElem>
+                    </mat-form-field>
+                </div>
+                <div class="padding-2">A special request (Please explain here):
+                    <mat-form-field floatLabel="always" style="width: 400px">
+                        <input matInput formControlName="specialRequest" #specialReqElem>
+                    </mat-form-field>
+                </div>
+            </td>
+            <td>
+                <mat-radio-group formControlName="choice1">
+                    <mat-label>Choice 1</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Home that hosts only one or two international students (Some host 3-4 students)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home with small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home without small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Native English-speaking host (Please be aware that most of these homes have a pet dog and/or cat)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Your studies"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Very clean"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Close to school or convenient bus"></mat-radio-button>
+                    </div>
+                    <div class="padding-50-25">
+                        <mat-radio-button [value]="dietaryNeedsElem.value"></mat-radio-button>
+                    </div>
+                    <div class="padding-80-25-50">
+                        <mat-radio-button [value]="specialReqElem.value"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <td>
+                <mat-radio-group formControlName="choice2">
+                    <mat-label>Choice 2</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Home that hosts only one or two international students (Some host 3-4 students)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home with small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home without small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Native English-speaking host (Please be aware that most of these homes have a pet dog and/or cat)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Your studies"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Very clean"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Close to school or convenient bus"></mat-radio-button>
+                    </div>
+                    <div class="padding-50-25">
+                        <mat-radio-button [value]="dietaryNeedsElem.value"></mat-radio-button>
+                    </div>
+                    <div class="padding-80-25-50">
+                        <mat-radio-button [value]="specialReqElem.value"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <td>
+                <mat-radio-group formControlName="choice3">
+                    <mat-label>Choice 3</mat-label>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Home that hosts only one or two international students (Some host 3-4 students)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home with small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Home without small children"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button
+                            value="Native English-speaking host (Please be aware that most of these homes have a pet dog and/or cat)">
+                        </mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Your studies"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Very clean"></mat-radio-button>
+                    </div>
+                    <div class="padding-25">
+                        <mat-radio-button value="Close to school or convenient bus"></mat-radio-button>
+                    </div>
+                    <div class="padding-50-25">
+                        <mat-radio-button [value]="dietaryNeedsElem.value"></mat-radio-button>
+                    </div>
+                    <div class="padding-80-25-50">
+                        <mat-radio-button [value]="specialReqElem.value"></mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </td>
+            <!-- <div style="display: flex; flex-direction: column; align-items: center">
+
+                <p>
+
+                    <mat-form-field floatLabel="always" style="width: 500px">
+
+                        <input matInput required formControlName="choice1" placeholder="1st Choice">
+
+                    </mat-form-field>
+
+                </p>
+
+                <p>
+
+                    <mat-form-field floatLabel="always" style="width: 500px">
+
+                        <input matInput required formControlName="choice2" placeholder="2nd Choice">
+
+                    </mat-form-field>
+
+                </p>
+
+                <p>
+
+                    <mat-form-field floatLabel="always" style="width: 500px">
+
+                        <input matInput required formControlName="choice3" placeholder="3rd Choice">
+
+                    </mat-form-field>
+
+                </p>
+
+            </div> -->
+
+            <p>
+
+                <span style="font-size: 18px; font-weight: bold">Smoking:</span>
+
+                Do you <span style="font-weight: bold">ever</span>
+                smoke <span style="font-weight: bold">anywhere</span>?
+
+                <mat-radio-group style="display: inline" formControlName="smoking">
+
+                    <mat-radio-button value="verylittle">very little</mat-radio-button>
+                    <mat-radio-button value="some">some</mat-radio-button>
+                    <mat-radio-button value="alot">a lot</mat-radio-button>
+                    <mat-radio-button value="never">never</mat-radio-button>
+
+                </mat-radio-group>
+
+                <br>
+
+                <span style="font-weight: bold">
+
+                    (If you are not accurate about this, it could result in immediate removal from Homestay, without a
+                    refund)
+
+                </span>
+
+            </p>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Please write a few sentences introducing yourself to your host family:</mat-card-title>
+
+        <mat-card-content>
+
+            <p>
+
+                (Include: favorite activities and hobbies, your family information, your studies, and anything you would
+                like for your host to know about you.)
+
+            </p>
+
+            <mat-form-field floatLabel="always" style="width: 100%">
+
+                <textarea matInput required formControlName="introduction"></textarea>
+
+            </mat-form-field>
+
+        </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+        <mat-card-title>Please write a few sentences introducing yourself to your host family:</mat-card-title>
+
+        <mat-card-content style="width: 700px">
+
+            <h4>
+
+                <span style="text-decoration: underline;">Student Responsibilities for Homestay:</span>
+
+                All students are responsible for abiding by all Homestay and Edmonds Community College policies
+                and contractual agreements, especially including:
+
+            </h4>
+
+            <p>I will:</p>
+
+            <ol>
+
+                <li>Respect and follow the guidelines of the family and try to resolve any conflict with the host family
+                </li>
+                <li>Let the host family know if I miss dinner or come home late</li>
+                <li>Agree to stay in the homestay program for at least one full quarter</li>
+                <li>Move, only when approved, on the next Arrival Day or 1st day of the month</li>
+                <li>Not break any laws during my stay with the homestay family (alcohol, drugs, fights, etc)</li>
+                <li>Pay for any damage caused by me, or my guests, before moving out</li>
+                <li>Pay for the first quarter within the first week of arrival - pay for future quarters by the middle
+                    of the prior quarter (see website for dates)</li>
+                <li>Not expect any refund if I choose to move out at any time during the Homestay Quarter (Arrival to
+                    Arrival)</li>
+
+            </ol>
+
+            <p>
+
+                Violation of above responsibilities (and those included in your Student Handbook) may result in:
+                cancellation of housing,
+                formal college disciplinary action, fines for services, and other judicial action.
+
+            </p>
+
+            <h3>By signing this you understand and agree to these terms:</h3>
+
+            <mat-form-field floatLabel="always" style="width: 200px">
+                <input matInput required formControlName="signatureName" placeholder="Printed Name">
+            </mat-form-field>
+
+            <ng-container *ngIf="applyFormService.newApplication">
+                <mat-form-field floatLabel="always">
+                    <input matInput [matDatepicker]="picker" formControlName="signatureDate" placeholder="Date"
+                        [readonly]=true>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </ng-container>
+            <ng-container *ngIf="!applyFormService.newApplication">
+                <mat-form-field floatLabel="always">
+                    <input matInput [matDatepicker]="picker" formControlName="signatureDate" placeholder="Date" [readonly]=true>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </ng-container>
+        </mat-card-content>
+
+    </mat-card>
+
+</form>
+
+<app-apply-buttons backLink="/apply/payment"
+    [forwardEnabled]="applyFormService.homestayformGroup.valid"
+    forwardLink="/apply/residence" [currentPage]="currentPage"></app-apply-buttons>

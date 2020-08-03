@@ -1,0 +1,106 @@
+:host {
+
+    .wrapper {
+
+        border-top: 4px solid #9DD824;
+        background: #02496B;
+        display: flex;
+        height: 200px;
+
+        .logos {
+
+            .logo-main {
+
+                cursor: pointer;
+
+                img {
+
+                    margin: 20px;
+                    width: 200px;
+
+                }
+
+            }
+
+            .logo-housing {
+
+                text-align: center;
+
+                img {
+
+                    width: 150px;
+
+                }
+
+                .logo-housing-text {
+
+                    text-align: center;
+                    color: #00b300;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 10px;
+                    letter-spacing: 1px;
+
+                }
+
+            }
+        }
+
+        .header-content {
+
+            flex-grow: 1;
+
+        }
+
+        .menu {
+
+            height: 40px;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .active {
+
+                background: #9DD824;
+
+            }
+
+            .item {
+
+                padding: 12px;
+                color: #fff;
+                cursor: pointer;
+
+                &:hover {
+
+                    background: #9DD824;
+
+                }
+
+                &:last-child {
+
+                    margin-right: 20px;
+
+                }
+
+            }
+
+        }
+
+        .bottom {
+
+            /* uncomment and check style when content will be added to block
+            background: #014D72;
+            */
+
+        }
+
+        .progressBar {
+            padding-left: 2%;
+            padding-right: 2%
+        }
+
+    }
+
+}

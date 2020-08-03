@@ -1,0 +1,261 @@
+<form [formGroup]="applyFormService.arrivalformGroup">
+
+    <mat-card>
+
+        <mat-card-title>Arrival Information:</mat-card-title>
+
+        <mat-card-content>
+
+            <mat-radio-group formControlName="type">
+
+                <table class="p-10">
+
+                    <tr>
+
+                        <td>
+
+                            <mat-radio-button value="needPickup"></mat-radio-button>
+
+                            I need airport pick-up on Arrival Date(s).
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+
+                            <mat-radio-button value="nonArrivalDay"></mat-radio-button>
+
+                            I am arriving on a non-arrival day
+
+                            <span style="text-decoration: underline; font-weight: bold;">after</span>
+
+                            the official arrival day.<br>
+
+                            (Housing Office will discuss options with you - hotel, cost for pickup..)
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+
+                            Flight arrival information:
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+
+                            <ng-container *ngIf="applyFormService.newApplication">
+                                <mat-form-field floatLabel="always">
+                                    <input matInput [matDatepicker]="picker" formControlName="flightDate"
+                                        placeholder="Flight Date" [readonly]=true>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker></mat-datepicker>
+                                </mat-form-field>
+                            </ng-container>
+                            <ng-container *ngIf="!applyFormService.newApplication">
+                                <mat-form-field floatLabel="always">
+                                    <input matInput [matDatepicker]="picker" formControlName="flightDate"
+                                        placeholder="Flight Date" [readonly]=true>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker></mat-datepicker>
+                                </mat-form-field>
+                            </ng-container>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+
+                            <mat-form-field floatLabel="always">
+
+                                <input matInput formControlName="flightAirline" placeholder="Airline">
+
+                            </mat-form-field>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field floatLabel="always">
+
+                                <input matInput required formControlName="flightNumber" placeholder="Flight Number">
+
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field floatLabel="always" style="width: 20%;">
+                                <mat-select placeholder="Arrival time in Seattle" formControlName="flightTime">
+                                    <mat-option value="00:00">00:00</mat-option>
+                                    <mat-option value="00:30">00:30</mat-option>
+                                    <mat-option value="01:00">01:00</mat-option>
+                                    <mat-option value="01:30">01:30</mat-option>
+                                    <mat-option value="02:00">02:00</mat-option>
+                                    <mat-option value="02:30">02:30</mat-option>
+                                    <mat-option value="03:00">03:00</mat-option>
+                                    <mat-option value="03:30">03:30</mat-option>
+                                    <mat-option value="04:00">04:00</mat-option>
+                                    <mat-option value="04:30">04:30</mat-option>
+                                    <mat-option value="05:00">05:00</mat-option>
+                                    <mat-option value="05:30">05:30</mat-option>
+                                    <mat-option value="06:00">06:00</mat-option>
+                                    <mat-option value="06:30">06:30</mat-option>
+                                    <mat-option value="07:00">07:00</mat-option>
+                                    <mat-option value="07:30">07:30</mat-option>
+                                    <mat-option value="08:00">08:00</mat-option>
+                                    <mat-option value="08:30">08:30</mat-option>
+                                    <mat-option value="09:00">09:00</mat-option>
+                                    <mat-option value="09:30">09:30</mat-option>
+                                    <mat-option value="10:00">10:00</mat-option>
+                                    <mat-option value="10:30">10:30</mat-option>
+                                    <mat-option value="11:00">11:00</mat-option>
+                                    <mat-option value="11:30">11:30</mat-option>
+                                    <mat-option value="12:00">12:00</mat-option>
+                                    <mat-option value="12:30">12:30</mat-option>
+                                    <mat-option value="13:00">13:00</mat-option>
+                                    <mat-option value="13:30">13:30</mat-option>
+                                    <mat-option value="14:00">14:00</mat-option>
+                                    <mat-option value="14:30">14:30</mat-option>
+                                    <mat-option value="15:00">15:00</mat-option>
+                                    <mat-option value="15:30">15:30</mat-option>
+                                    <mat-option value="16:00">16:00</mat-option>
+                                    <mat-option value="16:30">16:30</mat-option>
+                                    <mat-option value="17:00">17:00</mat-option>
+                                    <mat-option value="17:30">17:30</mat-option>
+                                    <mat-option value="18:00">18:00</mat-option>
+                                    <mat-option value="18:30">18:30</mat-option>
+                                    <mat-option value="19:00">19:00</mat-option>
+                                    <mat-option value="19:30">19:30</mat-option>
+                                    <mat-option value="20:00">20:00</mat-option>
+                                    <mat-option value="20:30">20:30</mat-option>
+                                    <mat-option value="21:00">21:00</mat-option>
+                                    <mat-option value="21:30">21:30</mat-option>
+                                    <mat-option value="22:00">22:00</mat-option>
+                                    <mat-option value="22:30">22:30</mat-option>
+                                    <mat-option value="23:00">23:00</mat-option>
+                                    <mat-option value="23:30">23:30</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <hr>
+
+
+                <p>
+
+                    <mat-checkbox formControlName="onMyOwn" (change)="setValidation($event.checked)">
+                        I will arrive at the Housing Office <span
+                            style="text-decoration: underline; font-weight: bold">on
+                            my own</span>
+                        on Arrival Day:&nbsp;
+                    </mat-checkbox>
+
+                    <ng-container *ngIf="applyFormService.arrivalformGroup.get('onMyOwn').value == false">
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Date" disabled='true'>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always">
+                            <input matInput placeholder="Time" disabled='true'>
+                        </mat-form-field>
+                    </ng-container>
+                    <ng-container *ngIf="applyFormService.arrivalformGroup.get('onMyOwn').value == true">
+                        <ng-container *ngIf="applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="picker" formControlName="onmyownDate"
+                                    placeholder="Date" [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #picker></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngIf="!applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="picker" formControlName="onmyownDate" placeholder="Date" [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #picker></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                        <mat-form-field floatLabel="always">
+                            <mat-select placeholder="Time" formControlName="onmyownTime">
+                                <mat-option value="00:00">00:00</mat-option>
+                                <mat-option value="00:30">00:30</mat-option>
+                                <mat-option value="01:00">01:00</mat-option>
+                                <mat-option value="01:30">01:30</mat-option>
+                                <mat-option value="02:00">02:00</mat-option>
+                                <mat-option value="02:30">02:30</mat-option>
+                                <mat-option value="03:00">03:00</mat-option>
+                                <mat-option value="03:30">03:30</mat-option>
+                                <mat-option value="04:00">04:00</mat-option>
+                                <mat-option value="04:30">04:30</mat-option>
+                                <mat-option value="05:00">05:00</mat-option>
+                                <mat-option value="05:30">05:30</mat-option>
+                                <mat-option value="06:00">06:00</mat-option>
+                                <mat-option value="06:30">06:30</mat-option>
+                                <mat-option value="07:00">07:00</mat-option>
+                                <mat-option value="07:30">07:30</mat-option>
+                                <mat-option value="08:00">08:00</mat-option>
+                                <mat-option value="08:30">08:30</mat-option>
+                                <mat-option value="09:00">09:00</mat-option>
+                                <mat-option value="09:30">09:30</mat-option>
+                                <mat-option value="10:00">10:00</mat-option>
+                                <mat-option value="10:30">10:30</mat-option>
+                                <mat-option value="11:00">11:00</mat-option>
+                                <mat-option value="11:30">11:30</mat-option>
+                                <mat-option value="12:00">12:00</mat-option>
+                                <mat-option value="12:30">12:30</mat-option>
+                                <mat-option value="13:00">13:00</mat-option>
+                                <mat-option value="13:30">13:30</mat-option>
+                                <mat-option value="14:00">14:00</mat-option>
+                                <mat-option value="14:30">14:30</mat-option>
+                                <mat-option value="15:00">15:00</mat-option>
+                                <mat-option value="15:30">15:30</mat-option>
+                                <mat-option value="16:00">16:00</mat-option>
+                                <mat-option value="16:30">16:30</mat-option>
+                                <mat-option value="17:00">17:00</mat-option>
+                                <mat-option value="17:30">17:30</mat-option>
+                                <mat-option value="18:00">18:00</mat-option>
+                                <mat-option value="18:30">18:30</mat-option>
+                                <mat-option value="19:00">19:00</mat-option>
+                                <mat-option value="19:30">19:30</mat-option>
+                                <mat-option value="20:00">20:00</mat-option>
+                                <mat-option value="20:30">20:30</mat-option>
+                                <mat-option value="21:00">21:00</mat-option>
+                                <mat-option value="21:30">21:30</mat-option>
+                                <mat-option value="22:00">22:00</mat-option>
+                                <mat-option value="22:30">22:30</mat-option>
+                                <mat-option value="23:00">23:00</mat-option>
+                                <mat-option value="23:30">23:30</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </ng-container>
+                </p>
+
+            </mat-radio-group>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</form>
+
+<app-apply-buttons backLink="/apply/accomodations"
+    [forwardEnabled]="applyFormService.arrivalformGroup.valid"
+    forwardLink="/apply/payment" [currentPage]="currentPage"></app-apply-buttons>

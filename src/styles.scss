@@ -1,0 +1,99 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ngx-toastr/toastr.css";
+
+body {
+    
+    padding: 0;
+    margin: 0;
+    
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+}
+
+* {
+    
+    outline: none;
+    
+}
+
+.p-10 {
+    
+    padding: 10px;
+    
+}
+
+.p-20 {
+    
+    padding: 20px;
+    
+}
+
+.center {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+mat-card {
+    
+    margin-bottom: 10px;
+    min-width: 400px;
+    
+}
+
+mat-form-field {
+    
+    margin-right: 7px;
+    
+}
+
+mat-card-title {
+    
+    font-size: 20px !important;
+    margin-bottom: 20px !important;
+    
+}
+
+table.p-10 {
+    
+    td {
+        
+        padding: 10px;
+        
+    }
+    
+}
+
+mat-radio-group {
+    
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    
+    mat-radio-button {
+        
+        margin: 3px;
+        
+    }
+    
+}
+
+mat-radio-group.row {
+    
+    display: inline;
+    
+}
+
+.mat-progress-bar-fill::after {
+    background-color: #9DD824;
+}
+
+mat-progress-bar .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+
+.width-80-pc {
+    width: 80%;
+}

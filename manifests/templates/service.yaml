@@ -1,0 +1,27 @@
+{{- if .Values.service.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "portagebay-ecc-platform-ui.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "portagebay-ecc-platform-ui.name" . }}
+    helm.sh/chart: {{ include "portagebay-ecc-platform-ui.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{ if .Values.ingress.staticIP }}
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: {{ .Values.ingress.staticIP }}
+  {{ end }}
+spec:
+  {{- if .Values.service.type }}
+  type: {{ .Values.service.type }}
+  {{- end }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "portagebay-ecc-platform-ui.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

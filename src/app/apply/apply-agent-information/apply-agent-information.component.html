@@ -1,0 +1,82 @@
+<form [formGroup]="applyFormService.agentInformationformGroup">
+
+    <h3>
+
+        International Students only:<br>
+        Only complete this part if you have an agent helping you to apply or are an agent.
+
+    </h3>
+
+    <mat-card>
+
+        <mat-card-title>Agency Information:</mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput
+                                   formControlName="agencyName"
+                                   placeholder="Agency Name">
+
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+
+                            <input matInput
+                                   formControlName="contactPerson"
+                                   placeholder="Contact Person">
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 70px; text-align: center">
+                            <mat-select 
+                                #countryCodeInput 
+                                formControlName="countryCode" 
+                                (selectionChange)="updatePhoneNum(countryCodeInput.value, phoneNumInput.value)"
+                                placeholder="Country Code">
+                                <mat-option *ngFor="let code of countriesCodes" [value]="code">{{code}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="always">
+                                <input matInput
+                                formControlName="phone"
+                                placeholder="Phone Number" #phoneNumInput 
+                                (change)="prependPhoneCode(countryCodeInput.value, phoneNumInput.value)">
+                        </mat-form-field>
+
+                        <mat-form-field floatLabel="always">
+                            <input matInput
+                                   formControlName="email"
+                                   placeholder="Email Address">
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</form>
+
+<app-apply-buttons backLink="/apply/personal-information"
+                   [forwardEnabled]="applyFormService.agentInformationformGroup.valid"
+                   forwardLink="/apply/accomodations" [currentPage]="currentPage"></app-apply-buttons>

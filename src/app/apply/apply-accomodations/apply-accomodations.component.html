@@ -1,0 +1,227 @@
+<form [formGroup]="applyFormService.accomodationsformGroup">
+
+    <mat-card>
+
+        <mat-card-title>Reasonable Accomodations:</mat-card-title>
+
+        <mat-card-content>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        Do you require any special physical or learning assistance?
+
+                    </td>
+
+                    <td>
+
+                        <mat-radio-group formControlName="requireAssitance">
+
+                            <br>
+                            <mat-radio-button value="yes">Yes</mat-radio-button>
+                            <br>
+                            <mat-radio-button value="no">No</mat-radio-button>
+
+                        </mat-radio-group>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 400px">
+
+                            <textarea matInput formControlName="assistanceDetails" matTextareaAutosize
+                                matAutosizeMinRows=1 matAutosizeMaxRows=3 placeholder="Please describe"></textarea>
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Do you have any medical conditions or allergies?
+
+                    </td>
+
+                    <td>
+
+                        <mat-radio-group formControlName="hasMedicalConditions">
+
+                            <br>
+                            <mat-radio-button value="yes">Yes</mat-radio-button>
+                            <br>
+                            <mat-radio-button value="no">No</mat-radio-button>
+
+                        </mat-radio-group>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 400px">
+
+                            <textarea matInput formControlName="conditionsDetails" matTextareaAutosize
+                                matAutosizeMinRows=1 matAutosizeMaxRows=3 placeholder="Please describe"></textarea>
+
+                        </mat-form-field>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </mat-card-content>
+
+    </mat-card>
+
+
+    <mat-card style="width: 800px;">
+
+        <mat-card-title>Medical Release Form (for students under age 18):</mat-card-title>
+
+        <mat-card-content>
+
+            <h3 style="color: maroon; text-decoration: underline;">All parents of 16 and 17 year old students must
+                complete this!</h3>
+
+            <p>
+
+                Hospitals and physicians may be reluctant to treat or care for children without consent from parents or
+                legal
+                guardians. This can cause problems if the child has a medical emergency and parent/guardians are not
+                readily
+                available to consent to treatment. Copies of the form will be made available to International Education
+                Division,
+                International Student Service, Housing and Student Life offices of Edmonds Community College.
+
+            </p>
+
+            I,
+
+            <mat-form-field floatLabel="always">
+
+                <input matInput required placeholder="Parent Name" formControlName="consentParent">
+
+            </mat-form-field>
+
+            , the parent of
+
+            <mat-form-field floatLabel="always">
+
+                <input matInput required placeholder="Student Name" formControlName="consentName">
+
+            </mat-form-field>
+
+            (student)
+
+
+            <br>
+            authorize and consent to medical, surgery and hospital care, treatment and procedures to be performed for my
+            child by a licensed physician or hospital when, at the sole discretion of the attending physician, such
+            care, treatment
+            and procedures are immediately necessary or advisable in the interest of my child's health and well-being,
+            and is not
+            advisable to take the time to contact me in advance. Under the circumstances set forth above, I elect not to
+            be informed
+            in advance of the nature and character of the proposed treatment, it's anticipated results, possible
+            alternatives, and
+            risks, complications, and anticipated benefits involved in the proposed treatment and the alternative forms
+            of treatment,
+            inculding non-treatment.
+
+            <p style="font-weight: bold">
+
+                <mat-checkbox formControlName="acknowledgement"></mat-checkbox>
+
+                As parents we show notice of understanding and acceptance for the "Medical Release Form" and provide my
+                acknowledgement of this through this electronic signature.
+
+            </p>
+
+            <table>
+
+                <tr>
+
+                    <td>
+
+                        <mat-form-field floatLabel="always" style="width: 300px">
+
+                            <input matInput required formControlName="signatureParent"
+                                placeholder="Signature of Parent">
+
+                        </mat-form-field>
+
+                        <ng-container *ngIf="applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="picker" formControlName="signatureParentDate"
+                                    placeholder="Date" [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #picker></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngIf="!applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="picker" formControlName="signatureParentDate" placeholder="Date"
+                                    [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #picker></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field floatLabel="always" style="width: 300px">
+                            <input matInput formControlName="signatureWitness"
+                                placeholer="Signature of Witness">
+                        </mat-form-field>
+                        <ng-container *ngIf="applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="pickerTwo" formControlName="signatureWitnessDate"
+                                    placeholder="Date" [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #pickerTwo></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                        <ng-container *ngIf="!applyFormService.newApplication">
+                            <mat-form-field floatLabel="always">
+                                <input matInput [matDatepicker]="pickerTwo" formControlName="signatureWitnessDate" placeholder="Date"
+                                    [readonly]=true>
+                                <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #pickerTwo></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</form>
+
+<ng-container *ngIf="userService.newUser">
+    <ng-container *ngIf="applyFormService.accomodationsformGroup.controls['acknowledgement'].value === true">
+        <app-apply-buttons [backLink]="userService.domestic ? personalLink : agentLink"
+            [forwardEnabled]="applyFormService.accomodationsformGroup.valid" forwardLink="/apply/arrival"
+            [currentPage]="currentPage"></app-apply-buttons>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="!userService.newUser">
+    <app-apply-buttons [backLink]="userService.domestic ? personalLink : agentLink" [forwardEnabled]="applyFormService.accomodationsformGroup.valid" forwardLink="/apply/arrival"
+        [currentPage]="currentPage"></app-apply-buttons>
+</ng-container>

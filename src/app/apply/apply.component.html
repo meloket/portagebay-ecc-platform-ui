@@ -1,0 +1,39 @@
+<div class="wrapper p-20">
+
+    <div class="nav">
+        <ng-template #normal>
+            <div>Introduction</div>
+            <div>Personal Information</div>
+            <div *ngIf="!userService.domestic">Agent Information</div>
+            <div>Accomodations</div>
+            <div>Arrival</div>
+            <div>Fee Payment & Housing Choice</div>
+            <div *ngIf="!userService.domestic">Homestay</div>
+            <div>Residence Hall</div>
+            <div>Submit</div>
+            <!-- <div [routerLink]="['/apply/introduction']" routerLinkActive="active">Introduction</div>
+            <div [routerLink]="['/apply/personal-information']" routerLinkActive="active">Personal Information</div>
+            <div [routerLink]="['/apply/agent-information']" routerLinkActive="active" *ngIf="!userService.domestic">Agent Information</div>
+            <div [routerLink]="['/apply/accomodations']" routerLinkActive="active">Accomodations</div>
+            <div [routerLink]="['/apply/arrival']" routerLinkActive="active">Arrival</div>
+            <div [routerLink]="['/apply/payment']" routerLinkActive="active">Fee Payment & Housing Choice</div>
+            <div [routerLink]="['/apply/homestay']" routerLinkActive="active" *ngIf="!userService.domestic">Homestay</div>
+            <div [routerLink]="['/apply/residence']" routerLinkActive="active">Residence Hall</div>
+            <div [routerLink]="['/apply/submit']" routerLinkActive="active">Submit</div> -->
+        </ng-template>
+        <!-- <div [routerLink]="['/apply/invoices']" routerLinkActive="active" *ngIf="!userService.newUser; else normal"> -->
+        <div [routerLink]="['/apply/invoices']" routerLinkActive="active" *ngIf="!userService.getNew(); else normal">
+
+            Payment
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>
